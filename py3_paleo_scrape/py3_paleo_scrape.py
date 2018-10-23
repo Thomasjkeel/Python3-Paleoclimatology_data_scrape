@@ -17,7 +17,7 @@ def get_year(prompt):
 
 
 def get_all_paleodata(CE=False):
-    continent = input('1. enter continent: ').lower()
+    continent = str(input('1. enter continent: ')).lower()
     ey = get_bool('2. set earliest year?: (True or False) ')
     if ey:
         earliest_year = get_year('2.5 enter earliest year needed: ')
@@ -105,7 +105,7 @@ def make_df():
     
     print('download starting...', '\n')
     for i in xmlid_list[start:end]:
-        url = "https://www.ncdc.noaa.gov/paleo-search/study/search.json?xmlId={0}".format(i)
+        url = "https://www.ncdc.noaa.gov/paleo-search/study/search.json?xmlId={0}".format(int(i))
         
         r = requests.get(url)
         response = r.json()
@@ -150,8 +150,8 @@ def make_df():
             d['lat'] = x
         full_list.append(d)
         print_count += 1
-        print('download starting...', '\n')
-        print('status: %s%s %s out of %s' % ((float(print_count) / float(length)*100), '%', print_count, length))
+        #print('download starting...', '\n')
+        #print('status: %s%s %s out of %s' % ((float(print_count) / float(length)*100), '%', print_count, length))
         
         df = pandas.DataFrame(full_list)
     try:
