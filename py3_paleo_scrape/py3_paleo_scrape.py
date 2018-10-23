@@ -155,6 +155,7 @@ def make_df():
         
         df = pandas.DataFrame(full_list)
     try:
+        print('download complete...')
         return df
     except:
         print('\n','no data returned')
